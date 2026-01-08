@@ -1,62 +1,169 @@
-html,
-body {
-  height: 100%;
+* {
   margin: 0;
-  font-size: 16px;
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  line-height: 1.8em;
-  color: #666;
+  padding: 0;
+  box-sizing: border-box;
 }
-.pimg1 {
-  background-image: url(/image/coding.png);
-  min-height: 100%;
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
+  background: #0a0a0a;
+  color: #fff;
 }
-.pimg2 {
-  background-image: url(/image/coding.png);
-  min-height: 400px;
-}
-.pimg3 {
-  background-image: url(/image/coding.png);
-  min-height: 400px;
-}
-.pimg1,
-.pimg2,
-.pimg3 {
+
+.parallax-section {
   position: relative;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.ptext {
+.parallax-bg {
   position: absolute;
-  top: 50%;
+  top: 0;
+  left: 0;
   width: 100%;
-  text-align: center;
-  color: black;
-  font-size: 27px;
-  letter-spacing: 8px;
-  text-transform: uppercase;
-}
-.textBg {
-  background: #ffffff;
-  color: hsl(0, 0%, 0%);
-  padding: 20px;
+  height: 120%;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.section {
-  padding: 50px 80px;
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.content {
+  position: relative;
+  max-width: 900px;
+  padding: 40px;
+  background: rgba(20, 20, 30, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  transform: translateY(50px);
+  opacity: 0;
+  transition: all 0.8s ease-out;
+}
+
+.content.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-align: center;
 }
-.section-light {
-  background-color: #f4f4f4;
-  color: black;
-  font-size: 22px;
+
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 25px;
+  color: #64ffda;
+  text-align: center;
 }
-.section-dark {
-    background-color: #f4f4f4;
-    color: black;
-    font-size: 22px;
+
+.phase-number {
+  display: inline-block;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  padding: 10px 25px;
+  border-radius: 50px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.skill-card {
+  background: rgba(100, 255, 218, 0.1);
+  padding: 20px;
+  border-radius: 15px;
+  border: 2px solid rgba(100, 255, 218, 0.3);
+  transition: 0.3s;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+  background: rgba(100, 255, 218, 0.2);
+  border-color: #64ffda;
+}
+
+.intro-text {
+  text-align: center;
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: #ccd6f6;
+}
+
+.timeline-dot {
+  width: 20px;
+  height: 20px;
+  background: #64ffda;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(100,255,218,0.7); }
+  50% { box-shadow: 0 0 0 15px rgba(100,255,218,0); }
+}
+
+.bg1 { background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1600'); }
+.bg2 { background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1600'); }
+.bg3 { background-image: url('https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1600'); }
+.bg4 { background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1600'); }
+.bg5 { background-image: url('https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=1600'); }
+.bg6 { background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1600'); }
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+}
+
+.scroll-indicator::after {
+  content: '↓';
+  font-size: 2rem;
+  color: #64ffda;
+}
+
+@keyframes bounce {
+  0%,20%,50%,80%,100% { transform: translateX(-50%) translateY(0); }
+  40% { transform: translateX(-50%) translateY(-20px); }
+  60% { transform: translateX(-50%) translateY(-10px); }
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  padding-left: 30px;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: #64ffda;
 }
